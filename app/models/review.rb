@@ -1,4 +1,4 @@
 class Review < ApplicationRecord
-    belongs_to :Airline
+    belongs_to :airline
 end
  
