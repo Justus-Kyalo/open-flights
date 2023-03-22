@@ -1,11 +1,37 @@
 class ReviewsController < ApplicationController
-    def create
-        review = Review.create!(review_params)
+    # GET 
+    def index
+      reviews = Review.all
+      render json: reviews , status: :ok
+    end
+    
+    def show
+      review = Review.find(params[:id])
+      if review
+      render json: review , status: :ok
+      else
+        render json: {errors:"review not found"}, status: :not_found
+      end
 
-        if review.save
+    end
+
+    def create
+        review = Review.create(review_params)
+
+        if review
           render json: review
         else
           render json: {errors:"could not create review"}, status: unprocessable_entity
+        end
+      end
+
+      def update
+        review = Review.find(params [:id])
+
+        if review.update(review_params)
+          render json:review
+        else
+          render json: {errors:"review not found"}, status: :not_found
         end
       end
 
@@ -24,6 +50,6 @@ class ReviewsController < ApplicationController
 
      
       def review_params
-        params.require(:review).permit(:title, :description, :score, :airline_id)
+        params.permit(:title, :description, :score)
       end
 end
