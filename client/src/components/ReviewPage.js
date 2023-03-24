@@ -29,24 +29,30 @@ function ReviewPage() {
     });
     setReviews(updatedReviewsArray);
   }
-  const reviewData = reviews.map((review) => {
-    return (
-      <ReviewCard
-        key={review.id}
-        title={review.title}
-        description={review.description}
-        score={review.score}
-      />
-    );
-  });
+  // const reviewData = reviews.map((review) => {
+  //   return (
+  //     <ReviewCard
+  //       key={review.id}
+  //       title={review.title}
+  //       description={review.description}
+  //       score={review.score}
+  //     />
+  //   );
+  // });
   return (
     <div>
       <NewReviewForm onAddReview={handleAddReview} />
-      <ReviewCard
-       
-        onDeleteReview={handleDeleteReview}
-        onUpdateReview={handleUpdateReview}
-      />
+      {reviews.map((review) => (
+        <ReviewCard
+          key={review.id}
+          id={review.id}
+          title={review.title}
+          description={review.description}
+          score={review.score}
+          onDeleteReview={handleDeleteReview}
+          onUpdateReview={handleUpdateReview}
+        />
+      ))}
     </div>
   );
 }

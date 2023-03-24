@@ -1,11 +1,5 @@
-import React from 'react'
-
-
-function ReviewCard(onDeleteReview,onUpdateReview, title,description,score,id) {
-    
-    // const[id, score, description,title] =review
-
-    function handleDeleteClick() {
+function ReviewCard({ id, title, description, score, onDeleteReview, onUpdateReview }) {
+  function handleDeleteClick() {
     fetch(`/reviews/${id}`, {
       method: "DELETE",
     }).then((r) => {
@@ -44,5 +38,4 @@ function ReviewCard(onDeleteReview,onUpdateReview, title,description,score,id) {
     </div>
   )
 }
-
-export default ReviewCard
+ export default ReviewCard;
